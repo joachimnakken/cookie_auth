@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { useState } from "react";
 import { loginUser } from "../lib/auth";
 
@@ -18,7 +19,9 @@ const LoginForm = () => {
   const _hanleSubmit = (e) => {
     e.preventDefault();
 
-    loginUser("Nathan@yesenia.net", "ramiro.info");
+    loginUser("Nathan@yesenia.net", "ramiro.info").then(() =>
+      Router.push("/profile")
+    );
   };
 
   console.log({ email, password });

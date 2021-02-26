@@ -47,6 +47,20 @@ app.prepare().then(() => {
     res.json(userData);
   });
 
+  server.get("/api/profile", async (req, res) => {
+    const { signedCookies: { token = {} } = {} } = req;
+    if (token.email) {
+      const { data } = await axios.get(
+        "http://jsonplaceholder.typicode.com/users"
+      );
+      const userProfile = data.find(({ email }) => email === token.email);
+
+      return res.json({ user: userProfile });
+    }
+
+    res.sendStatus(404);
+  });
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });

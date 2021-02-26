@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { loginUser } from "../lib/auth";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("Nathan@yesenia.net");
+  const [password, setPassword] = useState("ramiro.info");
 
   const _setEmailValue = (e) => {
     e.preventDefault();
@@ -17,8 +17,8 @@ const LoginForm = () => {
 
   const _hanleSubmit = (e) => {
     e.preventDefault();
-    console.log("loginCredentials:", { email, password });
-    loginUser(email, password);
+
+    loginUser("Nathan@yesenia.net", "ramiro.info");
   };
 
   console.log({ email, password });
